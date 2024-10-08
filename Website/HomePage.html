@@ -156,34 +156,24 @@
 
   <!-- JavaScript to dynamically load contributors -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Fetch the contributor list JSON file
-      fetch('Website/Contributor_list.json')
-        .then(response => response.json())
-        .then(data => {
-          const contributorGrid = document.getElementById('contributor-grid');
-
-          // Loop through each contributor in the JSON and create HTML
-          data.forEach(contributor => {
-            const contributorElement = document.createElement('div');
-            contributorElement.className = 'contributor';
-
-            // Placeholder image for each contributor
-            const randomKittenImage = `https://placekitten.com/${Math.floor(Math.random() * 100 + 300)}/200`;
-
-            // Create the HTML content
-            contributorElement.innerHTML = `
-              <img src="${randomKittenImage}" alt="Contributor Avatar">
-              <a href="#">${contributor.name}</a>
-              <p>${contributor.action}</p>
-            `;
-
-            // Append the new contributor to the grid
-            contributorGrid.appendChild(contributorElement);
-          });
-        })
-        .catch(error => console.error('Error loading contributors:', error));
+ fetch('https://<your-github-username>.github.io/<repository-name>/Website/Contributor_list.json')
+  .then(response => response.json())
+  .then(data => {
+    const contributorGrid = document.getElementById('contributor-grid');
+    data.forEach(contributor => {
+      const contributorElement = document.createElement('div');
+      contributorElement.className = 'contributor';
+      const randomKittenImage = `https://placekitten.com/${Math.floor(Math.random() * 100 + 300)}/200`;
+      contributorElement.innerHTML = `
+        <img src="${randomKittenImage}" alt="Contributor Avatar">
+        <a href="#">${contributor.name}</a>
+        <p>${contributor.action}</p>
+      `;
+      contributorGrid.appendChild(contributorElement);
     });
+  })
+  .catch(error => console.error('Error loading contributors:', error));
+
   </script>
 </body>
 </html>
