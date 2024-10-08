@@ -158,7 +158,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Fetch the contributor list JSON file
-      fetch('Website/Contributor_list.json')
+      fetch('../Contributor_list.json')
         .then(response => response.json())
         .then(data => {
           const contributorGrid = document.getElementById('contributor-grid');
